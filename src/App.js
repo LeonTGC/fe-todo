@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import Home from "./pages/Home"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Card from "./components/Card"
+import Edit from "./pages/Edit"
+import Navbar from "./components/Navbar"
 
-function App() {
+const App = () => {
+  const [list, setList] = useState([
+    {
+        text: 'test',
+        id: Date.now()
+    }
+])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+      <Navbar />
+        <Routes>
+          <Route path='/'
+            element={<Home list={list} setList={setList}/>}
+          />
+          <Route 
+            path="edit/:id" 
+            element={<Edit list={list} setList={setList}/>}
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
-
-export default App;
+export default App
