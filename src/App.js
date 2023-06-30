@@ -1,22 +1,20 @@
 import { useState } from "react"
 import Home from "./pages/Home"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Card from "./components/Card"
 import Edit from "./pages/Edit"
 import Navbar from "./components/Navbar"
 
 const App = () => {
   const [list, setList] = useState([
     {
-        text: 'test',
+        text: 'water plants',
         id: Date.now()
-    }
+    },
 ])
 
   return (
     <div>
       <BrowserRouter>
-      <Navbar />
         <Routes>
           <Route path='/'
             element={<Home list={list} setList={setList}/>}

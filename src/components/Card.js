@@ -5,11 +5,12 @@ const Card = ({ item, deleteHandler }) => {
     return (
         <div>
             <p>{item.text}</p>
-            <button onClick={deleteHandler}>delete</button>
-            <Link
-                to={`edit/${item.id}`}>
-                edit
-            </Link>
+            <div>
+                <button onClick={deleteHandler}>delete</button>
+                <Link to={`edit/${item.id}`}>
+                    edit
+                </Link>
+            </div>
         </div>
     )
 }

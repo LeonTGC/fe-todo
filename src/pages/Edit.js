@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
+import Navbar from "../components/Navbar"
 const Edit = ({ list, setList }) => {
     const params = useParams()
     const [update, setUpdate] = useState('')
     const [newInput, setNewInput] = useState("")
 
+    const navigate = useNavigate()
     const submitHandler = (e) => {
         e.preventDefault()
         let newArr = [...list]
@@ -15,6 +17,7 @@ const Edit = ({ list, setList }) => {
         }
         newArr.splice(index, 1, obj)
         setList(newArr)
+        navigate('/')
     }
 
     useEffect(() => {
@@ -24,14 +27,17 @@ const Edit = ({ list, setList }) => {
     if (!update) return <p>loading...</p>
     return (
         <div>
-            <p>edit</p>
-            <form onSubmit={submitHandler}>
-                <textarea
-                    placeholder={update && update[0].text}
-                    onChange={(e) => setNewInput(e.target.value)}
-                />
-                <button type="submit">submit</button>
-            </form>
+            <Navbar />
+            <div>
+                <h1>Edit</h1>
+                <form onSubmit={submitHandler}>
+                    <textarea
+                        placeholder={update && update[0].text}
+                        onChange={(e) => setNewInput(e.target.value)}
+                    />
+                    <button type="submit">submit</button>
+                </form>
+            </div>
         </div>
     )
 }

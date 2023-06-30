@@ -8,14 +8,18 @@ const Home = ({ list, setList }) => {
         console.log(newArr)
         setList(newArr)
     }
-    
+
     return (
         <div>
             <h1>home</h1>
-            <Input list={list} setList={setList} />
-            {list.map((item, index) => {
-                return <Card deleteHandler={() => deleteHandler(item.id)} item={item} setList={setList}/>
-            })}
+            <div>
+                <Input list={list} setList={setList} />
+                <div>
+                    {list.map((item, index) => {
+                        return <Card deleteHandler={() => deleteHandler(item.id)} item={item} setList={setList} />
+                    })}
+                </div>
+            </div>
         </div>
     )
 }
